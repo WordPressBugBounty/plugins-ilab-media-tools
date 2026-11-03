@@ -4,9 +4,9 @@
 
 @section('title')
     @if ($mode == 'size')
-        {{ __('Edit Settings for ') }} {{ucwords(preg_replace('/[-_]/', ' ', $size))}}
+        {{ __('Edit Settings for ', 'ilab-media-tools') }} {{ucwords(preg_replace('/[-_]/', ' ', $size))}}
     @else
-        {{ __('Edit Image') }} ({{$full_width}} x {{$full_height}})
+        {{ __('Edit Image', 'ilab-media-tools') }} ({{$full_width}} x {{$full_height}})
     @endif
     <div class="modal-actions">
         <a href="https://docs.mediacloud.press/articles/documentation/tools/image-editor" target="_blank"  data-article-sidebar="https://kb.mediacloud.press/articles/documentation/tools/image-editor" class="button button-small">@inline('ilab-ui-icon-help.svg') Help</a>
@@ -56,7 +56,7 @@
 
 @section('bottom-bar')
     @if($mode != 'size')
-        <a href="#" class="button imgix-new-preset-button">New Preset</a>
+        <a href="#" class="button imgix-new-preset-button" data-nonce="{!! $new_preset_nonce !!}">New Preset</a>
         <div class="imgix-preset-container">
             <div class="ilabm-bottom-bar-seperator"></div>
             <select class="imgix-presets">
@@ -69,8 +69,8 @@
                 </label>
                 <div class="ilabm-bottom-bar-seperator"></div>
             </div>
-            <a href="#" class="button button-primary imgix-save-preset-button">Save Preset</a>
-            <a href="#" class="button button-reset imgix-delete-preset-button">Delete Preset</a>
+            <a href="#" class="button button-primary imgix-save-preset-button" data-nonce="{!! $edit_preset_nonce !!}">Save Preset</a>
+            <a href="#" class="button button-reset imgix-delete-preset-button" data-nonce="{!! $delete_preset_nonce !!}">Delete Preset</a>
         </div>
     @endif
 @endsection
@@ -78,7 +78,7 @@
 @section('sidebar-content')
 <div class="ilabm-sidebar-tabs">
     @foreach($params as $paramSection => $paramSectionInfo)
-    <div class="ilabm-sidebar-tab" data-target="imgix-params-section-{{$paramSection}}">{{__(ucwords(str_replace('-', ' ', $paramSection)))}}</div>
+    <div class="ilabm-sidebar-tab" data-target="imgix-params-section-{{$paramSection}}">{{__(ucwords(str_replace('-', ' ', $paramSection)), 'ilab-media-tools')}}</div>
     @endforeach
 </div>
 <div class="ilabm-sidebar-content">
@@ -116,10 +116,10 @@
 @section('sidebar-actions')
 <div class="ilabm-sidebar-actions">
     <a href="#" class="button media-button button-primary button-reset imgix-button-reset-all">
-        {{__('Reset All')}}
+        {{__('Reset All', 'ilab-media-tools')}}
     </a>
     <a href="#" class="button media-button button-primary media-button-select imgix-button-save-adjustments">
-        {{__('Save Adjustments')}}
+        {{__('Save Adjustments', 'ilab-media-tools')}}
     </a>
 </div>
 @endsection
